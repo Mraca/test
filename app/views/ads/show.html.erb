@@ -1,29 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-3">
+  <%= image_tag "http://www.nieruchomosci.egospodarka.pl/zdjecia/mieszkania/mazowieckie/mieszkanie-na-sprzedaz-gwiazdzista,46900394,2-orig.jpg", class: "img-responsive" %>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @ad.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @ad.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @ad.price %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @ad.address %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @ad.city %>
-</p>
-
-<%= link_to 'Edit', edit_ad_path(@ad) %> |
-<%= link_to 'Back', ads_path %>
+<div class="col-md-9">
+  <div class="col-md-12">
+    <h4><%= @ad.title %></h4>
+    <hr>
+  </div>
+  <div class="col-md-6">
+    <strong>Price:</strong>
+    <%= @ad.price %>
+  </div>
+  <div class="col-md-6">
+    <strong>Address:</strong>
+    <%= @ad.address %>, <%= @ad.city %>
+  </div>
+  <div class="col-md-12">
+    <hr>
+    <strong>Description:</strong></br>
+    <%= simple_format @ad.description %>
+  </div>
+</div>

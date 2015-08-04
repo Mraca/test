@@ -1,38 +1,33 @@
 <p id="notice"><%= notice %></p>
+<% if admin_signed_in? %>
+  <%= link_to "New Ad", '/ads/new', class: 'btn btn-success' %>
+<% end %>
+<center> <h1>Strasznie fajne jest to programowanie</h1></center>
 
-<h1>Listing Flats Ads</h1>
+<% @ads.each do |ad| %>
 
-<table>
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Address</th>
-      <th>City</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @ads.each_with_index do |ad, index| %>
-      <tr>
-        <td><%= index + 1 %></td>
-        <td><%= ad.title %></td>
-        <td><%= ad.description %></td>
-        <td><%= ad.price %></td>
-        <td><%= ad.address %></td>
-        <td><%= ad.city %></td>
-        <td><%= link_to 'Show', ad %></td>
-        <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
-        <td><%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Clone', "ads/#{ad.id}/clone" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Ad', new_ad_path %>
+  <div class="col-md-2">
+    <%= image_tag "http://www.nieruchomosci.egospodarka.pl/zdjecia/mieszkania/mazowieckie/mieszkanie-na-sprzedaz-gwiazdzista,46900394,2-orig.jpg", class: "img-responsive" %>
+  </div>
+  
+  <div class="col-md-10">
+    <div class="col-md-12">
+      <% if admin_signed_in? %>
+        <%= link_to "Edit Ad", "/ads/#{ad.id}/edit", class: 'btn btn-info btn-xs' %>
+        <%= link_to "Delete Ad", "/ads/#{ad.id}", class: 'btn btn-warning btn-xs', method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+      <h4><%= link_to ad.title, ad %></h4>
+    </div>
+    <div class="col-md-6">
+      <strong>Address: </strong><%= ad.address %>, <%= ad.city %>
+    </div>
+    <div class="col-md-6">
+      <strong>Price: </strong><%= ad.price %>
+    </div>
+  </div>
+  
+    <div class="col-md-12">
+      <hr>
+    </div>
+    
+<% end %>
